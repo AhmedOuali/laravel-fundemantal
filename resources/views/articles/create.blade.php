@@ -1,4 +1,4 @@
-@extends('modelpage')
+@extends('app')
 @section('title')
 Create Page
 @stop

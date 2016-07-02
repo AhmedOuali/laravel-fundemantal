@@ -13,6 +13,10 @@ class MyController extends Controller {
 	 *
 	 * @return Response
 	 */
+	 public function __construct()
+	 {
+	 	$this->middleware('auth');
+	 }
 	 
 	 public function articlescont($id)
 	 
@@ -32,6 +36,7 @@ class MyController extends Controller {
 	public function index()
 	{
 		$article=articles::all();
+		
 		return view('articles.articlesh',compact('article'));
 	}
 
@@ -55,6 +60,7 @@ class MyController extends Controller {
 			$input = Request::all();
 			$input['updated_at']=Carbon::now();
 			articles::create($input);
+			\Session::flash('flash_message','Your article has beencreated');
 	 		return redirect('home');
 	}
 

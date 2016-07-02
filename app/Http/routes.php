@@ -25,6 +25,7 @@ Route::post('articles','MyController@store');
 
 
 
+
 Route::controllers([
 	'auth' => 'Auth\AuthController',
 	'password' => 'Auth\PasswordController',
