@@ -26,18 +26,25 @@ class MyController extends Controller {
 		return view('articles.idd',compact('article'));
 	 }
 	 
-	 public function cre()
+	 public function create()
 	 {
 	 	return view('articles.create');
 	 }
+	public function deletes($id)
+	{
+		$article=articles::find($id);
+		articles::find($id)->delete();
+		\Session::flash('flash_message',"Your article ( $article->title ) has been deleted");
 	
+		return redirect('home');
+	}
 	 
 	 
 	public function index()
 	{
 		$article=articles::all();
-		
-		return view('articles.articlesh',compact('article'));
+		$users=\Auth::user();
+		return view('articles.home',compact('article','users'));
 	}
 
 	/**
@@ -45,10 +52,7 @@ class MyController extends Controller {
 	 *
 	 * @return Response
 	 */
-	public function create()
-	{
-		//
-	}
+	
 
 	/**
 	 * Store a newly created resource in storage.
@@ -60,7 +64,7 @@ class MyController extends Controller {
 			$input = Request::all();
 			$input['updated_at']=Carbon::now();
 			articles::create($input);
-			\Session::flash('flash_message','Your article has beencreated');
+			\Session::flash('flash_message','Your article has been created');
 	 		return redirect('home');
 	}
 
@@ -85,6 +89,7 @@ class MyController extends Controller {
 	{
 		//
 	}
+	
 
 	/**
 	 * Update the specified resource in storage.

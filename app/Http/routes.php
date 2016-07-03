@@ -11,17 +11,19 @@
 |
 */
 
-Route::get('/', 'WelcomeController@index');
+Route::get('/', 'MyController@index');
 
 Route::get('home', 'MyController@index');
 
 Route::get('about','WelcomeController@about');
 
 Route::get('test','WelcomeController@test');
-Route::get('article/create','MyController@cre');
+Route::get('article/create','MyController@create');
+Route::get('article/{id}/delete','MyController@deletes');
 
 Route::get('article/{id}','MyController@articlescont');
 Route::post('articles','MyController@store');
+// Route::post('/auth/login','MyController@logininf');
 
 
 

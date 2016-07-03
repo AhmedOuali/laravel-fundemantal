@@ -1,14 +1,12 @@
 <html>
     <head>
-        
         <title>@yield('title')</title>
         <meta charset="utf-8">
         @include('CDN')
     </head>
     <body>
-        
-        <h1>Welcome</h1>
-        <div  class="contaier">
+        @yield('bar-menu')
+        <div class="contaier">
             @if(Session::has('flash_message'))
                 <div class="alert alert-success">{{Session::get('flash_message')}}</div>
             @endif

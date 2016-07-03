@@ -1,4 +1,4 @@
-@extends('app')
+@extends('app1')
 @section('title')
 Create Page
 @stop
@@ -15,7 +15,6 @@ Create Page
             {!! Form::textarea('body',null,['class'=>'form-control'])!!}
         </div>
         <div class="form-group">
-            
             {!! Form::submit('Add Article',null,['class'=>'btn btn-primary form-control'])!!}
         </div>
     {!! Form::close() !!}
