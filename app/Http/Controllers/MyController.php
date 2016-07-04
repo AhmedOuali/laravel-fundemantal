@@ -7,7 +7,7 @@ use Request;
 use Carbon\Carbon;
 
 class MyController extends Controller {
-
+     
 	/**
 	 * Display a listing of the resource.
 	 *
@@ -21,14 +21,16 @@ class MyController extends Controller {
 	 public function articlescont($id)
 	 
 	 {
-	 	
+	 	$username=\Auth::user();
 	 	$article=articles::find($id);
-		return view('articles.idd',compact('article'));
+		return view('articles.idd',compact('article','username'));
 	 }
+	 
 	 
 	 public function create()
 	 {
-	 	return view('articles.create');
+	 	$username=\Auth::user();
+	 	return view('articles.create',compact('username'));
 	 }
 	public function deletes($id)
 	{
@@ -43,8 +45,9 @@ class MyController extends Controller {
 	public function index()
 	{
 		$article=articles::all();
-		$users=\Auth::user();
-		return view('articles.home',compact('article','users'));
+		$username=\Auth::user();
+		return view('articles.home',compact('article','username'));
+		
 	}
 
 	/**
@@ -63,10 +66,13 @@ class MyController extends Controller {
 	{
 			$input = Request::all();
 			$input['updated_at']=Carbon::now();
+			$username=\Auth::user();
+			$input['user_id']=$username->id;
 			articles::create($input);
 			\Session::flash('flash_message','Your article has been created');
 	 		return redirect('home');
 	}
+	
 
 	/**
 	 * Display the specified resource.

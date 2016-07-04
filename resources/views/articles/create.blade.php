@@ -5,7 +5,9 @@ Create Page
 @section('content')
  <h3>Write an Article</h3>
  <hr/>
+    
     {!! Form::open(['url'=>'articles']) !!}
+    
         <div class="form-group">
             {!! Form::label('title','Name :') !!}
             {!! Form::text('title',null,['class'=>'form-control'])!!}
